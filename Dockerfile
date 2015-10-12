@@ -1,4 +1,4 @@
-FROM xpfriend/jenkins-slave-base:1.1.1
+FROM xpfriend/jenkins-slave-base:1.2.0
 MAINTAINER ototadana@gmail.com
 
 ENV MVN_VERSION 3.3.3
