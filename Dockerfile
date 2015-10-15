@@ -1,4 +1,4 @@
-FROM xpfriend/jenkins-slave-base:1.2.0
+FROM xpfriend/jenkins-slave-base:1.2.1
 MAINTAINER ototadana@gmail.com
 
 ENV MVN_VERSION 3.3.3
@@ -14,5 +14,3 @@ ENV PATH ${M2}:${PATH}
 COPY ./config/. /config/
 RUN sudo chown -R jenkins:jenkins /config
 RUN chmod +x /config/*
-
-ENV NODE_NAME java
