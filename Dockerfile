@@ -1,7 +1,7 @@
-FROM xpfriend/jenkins-slave-base:1.3.0
+FROM xpfriend/jenkins-slave-base:1.4.0
 MAINTAINER ototadana@gmail.com
 
-ENV MVN_VERSION 3.3.3
+ENV MVN_VERSION 3.3.9
 
 RUN wget http://www.us.apache.org/dist/maven/maven-3/${MVN_VERSION}/binaries/apache-maven-${MVN_VERSION}-bin.zip -P /tmp \
     && unzip /tmp/apache-maven-${MVN_VERSION}-bin.zip -d ~ \
