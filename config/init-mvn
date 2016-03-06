@@ -2,11 +2,13 @@ if [ ! -d ~/.m2 ]; then
     mkdir ~/.m2
 fi
 
-if [ -f ~/.m2/settings.xml ]; then
-    return
+if [ -f ${M2_HOME}/conf/settings.xml.backup ]; then
+    cp -p ${M2_HOME}/conf/settings.xml.backup ${M2_HOME}/conf/settings.xml
+else
+    cp -p ${M2_HOME}/conf/settings.xml ${M2_HOME}/conf/settings.xml.backup
 fi
 
-cat << EOF > ~/.m2/settings.xml 2>&1
+cat << EOF > ${M2_HOME}/conf/settings.xml 2>&1
 <settings>
   <profiles>
     <profile>
@@ -23,7 +25,7 @@ EOF
 
 if [ -n "${http_proxy_host}" ]; then
     mvn_no_proxy=`echo ${no_proxy} |sed -e 's/,/\|/g'`
-    cat << EOF >> ~/.m2/settings.xml 2>&1
+    cat << EOF >> ${M2_HOME}/conf/settings.xml 2>&1
   <proxies>
     <proxy>
       <id>default-proxy</id>
@@ -39,4 +41,4 @@ if [ -n "${http_proxy_host}" ]; then
 EOF
 fi
 
-echo "</settings>" >> ~/.m2/settings.xml
+echo "</settings>" >> ${M2_HOME}/conf/settings.xml
