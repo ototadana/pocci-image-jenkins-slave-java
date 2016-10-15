@@ -20,8 +20,50 @@ cat << EOF > ${M2_HOME}/conf/settings.xml 2>&1
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
       </properties>
     </profile>
+EOF
+
+if [ -n "${MAVEN_REPOSITORY_URL}" ]; then
+    cat << EOF >> ${M2_HOME}/conf/settings.xml 2>&1
+    <profile>
+      <id>private-repository</id>
+      <activation>
+        <activeByDefault>true</activeByDefault>
+      </activation>
+      <repositories>
+        <repository>
+          <id>central</id>
+          <url>http://central</url>
+          <releases><enabled>true</enabled></releases>
+          <snapshots><enabled>true</enabled></snapshots>
+        </repository>
+      </repositories>
+      <pluginRepositories>
+        <pluginRepository>
+          <id>central</id>
+          <url>http://central</url>
+          <releases><enabled>true</enabled></releases>
+          <snapshots><enabled>true</enabled></snapshots>
+        </pluginRepository>
+      </pluginRepositories>
+    </profile>
+EOF
+fi
+
+cat << EOF >> ${M2_HOME}/conf/settings.xml 2>&1
   </profiles>
 EOF
+
+if [ -n "${MAVEN_REPOSITORY_URL}" ]; then
+    cat << EOF >> ${M2_HOME}/conf/settings.xml 2>&1
+  <mirrors>
+    <mirror>
+      <id>private-repository</id>
+      <mirrorOf>*</mirrorOf>
+      <url>${MAVEN_REPOSITORY_URL}</url>
+    </mirror>
+  </mirrors>
+EOF
+fi
 
 if [ -n "${http_proxy_host}" ]; then
     mvn_no_proxy=`echo ${no_proxy} |sed -e 's/,/\|/g'`
