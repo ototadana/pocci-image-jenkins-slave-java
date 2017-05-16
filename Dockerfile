@@ -1,4 +1,4 @@
-FROM xpfriend/workspace-base:3.24.0
+FROM xpfriend/workspace-base:3.25.0
 MAINTAINER ototadana@gmail.com
 
 ENV MVN_VERSION 3.5.0
