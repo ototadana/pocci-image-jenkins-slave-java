@@ -1,7 +1,7 @@
-FROM xpfriend/workspace-base:3.25.0
+FROM xpfriend/workspace-base:3.26.0
 MAINTAINER ototadana@gmail.com
 
-ENV MVN_VERSION 3.5.0
+ENV MVN_VERSION 3.3.9
 
 RUN wget http://www.us.apache.org/dist/maven/maven-3/${MVN_VERSION}/binaries/apache-maven-${MVN_VERSION}-bin.zip -P /tmp \
     && unzip /tmp/apache-maven-${MVN_VERSION}-bin.zip -d ~ \
